@@ -10,5 +10,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
     <flow name="devops-pocFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/devopps" doc:name="HTTP"/>
         <set-payload value="#['test payload']" doc:name="Set Payload"/>
+        <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
     </flow>
 </mule>
