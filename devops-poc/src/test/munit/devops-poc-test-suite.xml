@@ -9,6 +9,6 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
     </spring:beans>
     <munit:test name="devops-poc-test-suite-devops-pocFlowTest" description="Test">
         <flow-ref name="devops-pocFlow" doc:name="Flow-ref to devops-pocFlow"/>
-        <munit:assert-on-equals expectedValue="#['test payload']" actualValue="#[payload]" doc:name="Assert Equals"/>
+        <munit:assert-on-equals expectedValue="#['test payload1']" actualValue="#[payload]" doc:name="Assert Equals"/>
     </munit:test>
 </mule>
