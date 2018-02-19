@@ -54,6 +54,27 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+    <groupId>org.mule.tools.maven</groupId>
+    <artifactId>mule-maven-plugin</artifactId>
+    <version>${mule.tools.version}</version>
+    <configuration>
+        <deploymentType>agent</deploymentType>
+        <uri>http://localhost:8585/</uri>
+        <username>admin</username>
+        <password>admin</password>
+        <serverGroup>Development</serverGroup>
+    </configuration>
+    <executions>
+        <execution>
+            <id>deploy</id>
+            <phase>deploy</phase>
+            <goals>
+                <goal>deploy</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 		</plugins>
 	</build>
 
