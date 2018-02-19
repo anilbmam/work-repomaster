@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+	<spring:beans>
+		<spring:bean class="org.anil.java.VerifyModel" name="invokeJavaMethod">
+		</spring:bean>
+	</spring:beans>
+	<http:listener-config name="HTTP_Listener_Configuration"
+		host="0.0.0.0" port="8082" doc:name="HTTP Listener Configuration" />
+	<flow name="mmc-devops-pocFlow">
+		<http:listener config-ref="HTTP_Listener_Configuration"
+			path="/cars" doc:name="HTTP" />
+		<set-variable variableName="SetModel"
+			value="#[message.inboundProperties.'http.query.params'.model]"
+			doc:name="SetModelVariable" />
+        <logger message="#[flowVars.SetModel]" level="INFO" doc:name="Logger"/>
+        <choice doc:name="Choice">
+            <when expression="#[flowVars.SetModel !=null]">
+                <flow-ref name="VerifyModelFlow" doc:name="Flow Reference"/>
+            </when>
+            <otherwise>
+                <set-payload value="[      {         &quot;Manufacturer&quot;:&quot;Hundai&quot;,       &quot;Model&quot;:&quot;i20&quot;,       &quot;Varient&quot;:&quot;Asta&quot;,       &quot;Color&quot;:&quot;Red&quot;,       &quot;Year&quot;:2016,       &quot;Price&quot;:780000    },    {         &quot;Manufacturer&quot;:&quot;Maruthi&quot;,       &quot;Model&quot;:&quot;Shift&quot;,       &quot;Varient&quot;:&quot;ZXI&quot;,       &quot;Color&quot;:&quot;White&quot;,       &quot;Year&quot;:2008,       &quot;Price&quot;:680000    },    {         &quot;Manufacturer&quot;:&quot;Ford&quot;,       &quot;Model&quot;:&quot;Ecosport&quot;,       &quot;Varient&quot;:&quot;Sports&quot;,       &quot;Color&quot;:&quot;Gray&quot;,       &quot;Year&quot;:2017,       &quot;Price&quot;:980000    } ]" doc:name="Set Payload All Models"/>
+            </otherwise>
+        </choice>
+        <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+
+	</flow>
+	<flow name="VerifyModelFlow">
+        <invoke object-ref="invokeJavaMethod" method="check" methodArguments="#[flowVars.SetModel]" doc:name="InvokeVerifyModel"/>
+        <set-variable variableName="modelStatus" value="#[payload]" doc:name="GetJavaResultVariable"/>
+        <choice doc:name="Choice">
+            <when expression="#[flowVars.SetModel=='Hundai']">
+                <set-payload value="{  
+      &quot;Manufacturer&quot;:&quot;Hundai&quot;,
+      &quot;Model&quot;:&quot;i20&quot;,
+      &quot;Varient&quot;:&quot;Asta&quot;,
+      &quot;Color&quot;:&quot;Red&quot;,
+      &quot;Year&quot;:2016,
+      &quot;Price&quot;:780000
+   }" doc:name="SetHundaiPayload"/>
+            </when>
+            <when expression="#[flowVars.SetModel=='Maruthi']">
+                <set-payload value="{  
+      &quot;Manufacturer&quot;:&quot;Maruthi&quot;,
+      &quot;Model&quot;:&quot;Shift&quot;,
+      &quot;Varient&quot;:&quot;ZXI&quot;,
+      &quot;Color&quot;:&quot;White&quot;,
+      &quot;Year&quot;:2008,
+      &quot;Price&quot;:680000
+   }" doc:name="SetMaruthiPayload"/>
+            </when>
+            <when expression="#[flowVars.SetModel=='Ford']">
+                <set-payload value="{  
+      &quot;Manufacturer&quot;:&quot;Ford&quot;,
+      &quot;Model&quot;:&quot;Ecosport&quot;,
+      &quot;Varient&quot;:&quot;Sports&quot;,
+      &quot;Color&quot;:&quot;Gray&quot;,
+      &quot;Year&quot;:2017,
+      &quot;Price&quot;:980000
+   }" doc:name="SetFordPayload"/>
+            </when>
+            <when expression="#[flowVars.modelStatus=='ModelNotFound']">
+                <set-payload value="{&quot;Exception&quot; : &quot;This model not found in our showroom&quot;}" doc:name="SetInvalidModelPayload"/>
+            </when>
+            <otherwise>
+                <logger level="INFO" doc:name="Logger"/>
+            </otherwise>
+        </choice>
+	</flow>
+</mule>
