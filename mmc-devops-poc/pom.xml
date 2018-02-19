@@ -62,6 +62,9 @@
 				<configuration>
 					<deploymentType>agent</deploymentType>
 					<uri>http://localhost:8585/mmc-3.8.1/</uri>
+					<username>admin</username>
+					<password>admin</password>					
+					<serverGroup>Development</serverGroup>
 				</configuration>
 				<executions>
 					<execution>
