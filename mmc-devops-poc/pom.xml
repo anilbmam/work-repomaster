@@ -61,7 +61,7 @@
 				<version>2.2.1</version>
 				<configuration>
 					<deploymentType>agent</deploymentType>
-					<uri>http://localhost:8585/</uri>
+					<uri>http://localhost:8585/mmc-3.8.1/</uri>
 				</configuration>
 				<executions>
 					<execution>
@@ -172,7 +172,7 @@
 		</repository>
 	</repositories>
 	<pluginRepositories>
-		<pluginRepository>
+		<!-- <pluginRepository>
 			<id>mulesoft-release</id>
 			<name>mulesoft release repository</name>
 			<layout>default</layout>
@@ -180,7 +180,11 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</pluginRepository>
+		</pluginRepository> -->
+		<pluginRepository>
+        <id>mule-public</id>
+        <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
+    </pluginRepository>
 	</pluginRepositories>
 
 </project>
