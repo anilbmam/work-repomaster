@@ -61,9 +61,10 @@
 				<version>2.0</version>
 				<configuration>
 					<deploymentType>agent</deploymentType>
-					<uri>http://localhost:8585/mmc-3.8.1/</uri>
+					<uri>http://localhost:8585/</uri>
 					<username>admin</username>
 					<password>admin</password>
+					<applicationName>mmc-devops-poc</applicationName>
 					<serverGroup>Development</serverGroup>
 				</configuration>
 				<executions>
