@@ -175,7 +175,7 @@
 		</repository>
 	</repositories>
 	<pluginRepositories>
-		<!-- <pluginRepository>
+		<pluginRepository>
 			<id>mulesoft-release</id>
 			<name>mulesoft release repository</name>
 			<layout>default</layout>
@@ -183,11 +183,11 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</pluginRepository> -->
-		<pluginRepository>
+		</pluginRepository>
+		<!-- <pluginRepository>
         <id>mule-public</id>
         <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
-    </pluginRepository>
+    </pluginRepository> -->
 	</pluginRepositories>
 
 </project>
