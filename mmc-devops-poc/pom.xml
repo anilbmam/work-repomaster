@@ -62,9 +62,9 @@
 				<configuration>
 					<deploymentType>agent</deploymentType>
 					<uri>http://localhost:8585/mmc-3.8.1/</uri>
-					<username>admin</username>
+					<!-- <username>admin</username>
 					<password>admin</password>					
-					<serverGroup>Development</serverGroup>
+					<serverGroup>Development</serverGroup> -->
 				</configuration>
 				<executions>
 					<execution>
@@ -183,11 +183,7 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</pluginRepository>
-		<!-- <pluginRepository>
-        <id>mule-public</id>
-        <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
-    </pluginRepository> -->
+		</pluginRepository>		
 	</pluginRepositories>
 
 </project>
