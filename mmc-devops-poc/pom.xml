@@ -61,7 +61,7 @@
     <version>2.2.1</version>
     <configuration>
         <deploymentType>standalone</deploymentType>
-        <muleHome>D:\mule-enterprise-standalone-3.9.0\.mule</muleHome>
+        <muleHome>D:\mule-enterprise-standalone-3.9.0</muleHome>
     </configuration>
     <executions>
         <execution>
