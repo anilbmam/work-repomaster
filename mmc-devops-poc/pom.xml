@@ -56,26 +56,23 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>2.2.1</version>
-				<configuration>
-					<deploymentType>agent</deploymentType>
-					<uri>http://localhost:8585/mmc-3.8.1/</uri>
-					<!-- <username>admin</username>
-					<password>admin</password>					
-					<serverGroup>Development</serverGroup> -->
-				</configuration>
-				<executions>
-					<execution>
-						<id>deploy</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+    <groupId>org.mule.tools.maven</groupId>
+    <artifactId>mule-maven-plugin</artifactId>
+    <version>2.2.1</version>
+    <configuration>
+        <deploymentType>standalone</deploymentType>
+        <muleHome>D:\mule-enterprise-standalone-3.9.0\.mule</muleHome>
+    </configuration>
+    <executions>
+        <execution>
+            <id>deploy</id>
+            <phase>deploy</phase>
+            <goals>
+                <goal>deploy</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 		</plugins>
 	</build>
 
