@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 		</spring:bean>
 	</spring:beans>
 	<http:listener-config name="HTTP_Listener_Configuration"
-		host="0.0.0.0" port="8082" doc:name="HTTP Listener Configuration" />
+		host="0.0.0.0" port="8085" doc:name="HTTP Listener Configuration" />
 	<flow name="mmc-devops-pocFlow">
 		<http:listener config-ref="HTTP_Listener_Configuration"
 			path="/cars" doc:name="HTTP" />
